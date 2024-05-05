@@ -25,6 +25,13 @@ class MedicamentRepository extends ServiceEntityRepository
         $entityManager->flush();
     }
 
+    public function save(Medicament $medicament): void
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($medicament);
+        $entityManager->flush();
+    }
+
 //    /**
 //     * @return Medicament[] Returns an array of Medicament objects
 //     */

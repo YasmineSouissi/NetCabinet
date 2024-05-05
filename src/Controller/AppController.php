@@ -5,6 +5,8 @@ use App\Repository\Medicament;
 use App\Repository\MedicamentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Medicament as MedicamentEntity;
+use App\Form\MedicamentType;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,4 +54,36 @@ class AppController extends AbstractController
         // Redirect to a page after deletion (e.g., list of medications)
         return $this->redirectToRoute('medicaments');
     }
+    #[Route('/nouveau_med', name: 'nouveau_med')]
+    public function new(Request $request, MedicamentRepository $medicamentRepository): Response
+    {
+        // Create a new instance of the entity Medicament
+        $medicament = new MedicamentEntity();
+    
+        // Create a form instance using the MedicamentType form type
+        $form = $this->createForm(MedicamentType::class, $medicament);
+    
+        // Handle form submission
+        $form->handleRequest($request);
+    
+        // Check if the form is submitted and valid
+        if ($form->isSubmitted() && $form->isValid()) {
+            // If the form is submitted and valid, save the Medicament entity using the repository
+            $medicamentRepository->save($medicament);
+    
+            // Add a flash message to indicate that the medication has been successfully added
+            $this->addFlash('success', 'Le médicament a été ajouté avec succès.');
+    
+            // Redirect the user to another page (e.g., the list of medications)
+            return $this->redirectToRoute('medicaments');
+        }
+    
+        // Render the Twig view with the form
+        return $this->render('app/nouveau_med.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    
 }
+
