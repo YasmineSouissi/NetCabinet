@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <link rel="icon" href="https://cdn-icons-png.freepik.com/256/2785/2785482.png?ga=GA1.1.1918295113.1697625766&semt=ais_hybrid">
+ <meta charset="UTF-8">
+ <title>{% block title %}Welcome!{% endblock %}</title>
+
+
+<link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
+
+{% block stylesheets %}
+{% endblock %}
+ </head>
+ <body>
+    <div style="margin: 100px; color: black">
+
+        <form>
+  <fieldset>
+    <legend>Log in</legend>
+    
+    <div>
+      <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div>
+      <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
+    </div>
+    
+    
+    <button type="submit" class="btn btn-primary" style="margin: 20px">Submit</button>
+  </fieldset>
+        </form>
+    </div>
+
+ </body>
