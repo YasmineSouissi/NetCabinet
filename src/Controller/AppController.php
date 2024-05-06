@@ -6,28 +6,37 @@ use App\Repository\MedicamentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Medicament as MedicamentEntity;
 use App\Form\MedicamentType;
+use App\Entity\Ordonnance;
+use App\Form\OrdonnanceType;
+
+use App\Repository\OrdonnanceRepository;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class AppController extends AbstractController
 {
-    #[Route('/app', name: 'app_app')]
-    public function index(MedicamentRepository $repo): Response
+    #[Route('/', name: 'app_app')]
+    public function index()
     {
-        $medicaments = $repo->findAll();
 
-        return $this->render('app/index.html.twig', [ 'controller_name'=>'AppController',
-            'medicaments' => $medicaments,
-        ]);
+        return $this->render('app/index.html.twig');
     }
     #[Route('/login', name: 'login')]
     public function login(): Response
     {
         return $this->render('app/login.html.twig');
+    }
+    #[Route('/dashboard', name: 'dashboard')]
+    public function dashboard()
+    {
+
+        return $this->render('app/dashboard.html.twig');
     }
 
     #[Route('/medicaments', name: 'medicaments')]
@@ -84,6 +93,49 @@ class AppController extends AbstractController
         ]);
     }
     
+        #[Route('/ordonnances', name: 'ordonnances')]
+        public function ordonnances(OrdonnanceRepository $ordonnanceRepository): Response
+        {
+            // Récupérer toutes les ordonnances en utilisant la méthode personnalisée du repository
+            $ordonnances = $ordonnanceRepository->findAllOrdonnances();
+    
+            // Passer les ordonnances à la vue Twig
+            return $this->render('app/ordonnance.htlm.twig', [
+                'ordonnances' => $ordonnances,
+            ]);
+        }
+        #[Route('/nouvelle_ordonnance', name: 'nouvelle_ordonnance')]
+        public function nouvelleOrdonnance(Request $request): Response
+        {
+            // Créez une nouvelle instance de l'entité Ordonnance
+            $ordonnance = new Ordonnance();
+        
+            // Créez une instance de votre formulaire en utilisant le formulaire de type OrdonnanceType
+            $form = $this->createForm(OrdonnanceType::class, $ordonnance);
+        
+            // Gérez la soumission du formulaire
+            $form->handleRequest($request);
+        
+            // Vérifiez si le formulaire est soumis et valide
+            if ($form->isSubmitted() && $form->isValid()) {
+                // Si le formulaire est soumis et valide, sauvegardez l'entité Ordonnance dans la base de données
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($ordonnance);
+                $entityManager->flush();
+        
+                // Ajoutez un message flash pour indiquer que l'ordonnance a été ajoutée avec succès
+                $this->addFlash('success', 'L\'ordonnance a été ajoutée avec succès.');
+        
+                // Redirigez l'utilisateur vers une autre page (par exemple, la liste des ordonnances)
+                return $this->redirectToRoute('ordonnances');
+            }
+        
+            // Rendez la vue Twig avec le formulaire
+            return $this->render('app/nouvelle_ordonnace.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
+        
     
 }
 

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Liste des ordonnances</h1>
+
+        <div class="accordion" id="accordionExample">
+            {% for ordonnance in ordonnances %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ ordonnance.id }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ ordonnance.id }}" aria-expanded="true" aria-controls="collapse{{ ordonnance.id }}">
+                            Ordonnance {{ ordonnance.id }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ ordonnance.id }}" class="accordion-collapse collapse show" aria-labelledby="heading{{ ordonnance.id }}">
+                        <div class="accordion-body">
+                            <ul>
+                                {% for medicament in ordonnance.medicament %}
+                                    <li>{{ medicament.nom }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

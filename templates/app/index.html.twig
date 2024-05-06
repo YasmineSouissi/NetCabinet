@@ -1,0 +1,47 @@
+{% extends 'home.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/vecteurs-libre/fond-abstrait-blanc_23-2148806275.jpg?w=826&t=st=1714928056~exp=1714928656~hmac=6cdabea0fb78f93f7a95ff3877cfad760fbe73bdce5539503a360c6605d04168');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+       .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            min-width: 300px; 
+            min-height: 300px;
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+            text-align: center;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h1 class="card-title text-center" style="color: black">Bienvenue sur NetCabinet</h1>
+                        <div class="text-center" style="padding: 50px">
+                            <a href="{{ path('login') }}" class="btn btn-primary btn-lg">Se connecter</a>
+                            <a href="#" class="btn btn-success btn-lg">S'inscrire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

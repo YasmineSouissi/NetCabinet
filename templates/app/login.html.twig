@@ -1,37 +1,63 @@
 <!DOCTYPE html>
-<html>
- <head>
- <link rel="icon" href="https://cdn-icons-png.freepik.com/256/2785/2785482.png?ga=GA1.1.1918295113.1697625766&semt=ais_hybrid">
- <meta charset="UTF-8">
- <title>{% block title %}Welcome!{% endblock %}</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login{% endblock %}</title>
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/256/2785/2785482.png?ga=GA1.1.1918295113.1697625766&semt=ais_hybrid">
+    <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/vecteurs-libre/fond-abstrait-blanc_23-2148806275.jpg?w=826&t=st=1714928056~exp=1714928656~hmac=6cdabea0fb78f93f7a95ff3877cfad760fbe73bdce5539503a360c6605d04168');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            min-width: 300px; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
 
-<link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
+        .form-label {
+            font-weight: bold;
+        }
 
-{% block stylesheets %}
-{% endblock %}
- </head>
- <body>
-    <div style="margin: 100px; color: black">
-
-        <form>
-  <fieldset>
-    <legend>Log in</legend>
-    
-    <div>
-      <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <form>
+                        <fieldset>
+                            <legend class="text-center" style="color: black">Log in</legend>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label" style="color: black">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label"style="color: black">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary" href="{{ path('medicaments') }}" >Submit</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-      <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
-    </div>
-    
-    
-    <button type="submit" class="btn btn-primary" style="margin: 20px">Submit</button>
-  </fieldset>
-        </form>
-    </div>
-
- </body>
+</body>
+</html>
