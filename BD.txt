@@ -1,0 +1,18 @@
++----+--------+---------------+------------+
+| id | dosage | nom           | form       |
++----+--------+---------------+------------+
+|  1 |    100 | Paracétamol   | Comprimé   |
+|  2 |    200 | Ibuprofène    | Capsule    |
+|  4 |    500 | Aspirine      | Comprimé   |
+|  5 |     50 | Ventoline     | Inhalateur |
+|  6 |     10 | Lévothyroxine | Comprimé   |
+|  7 |     20 | Omeprazole    | Capsule    |
+|  8 |     40 | Amoxicilline  | Suspension |
+|  9 |     30 | Atorvastatine | Comprimé   |
+| 10 |     15 | Citalopram    | Comprimé   |
+| 11 |     25 | Lisinopril    | Comprimé   |
+| 12 |     50 | Metformine    | Comprimé   |
+| 13 |    100 | Sertraline    | Comprimé   |
+| 14 |     75 | Losartan      | Comprimé   |
+| 15 |    150 | Fluoxétine    | Capsule    |
+| 16 |      3 | efferalgon    | sirop      |
